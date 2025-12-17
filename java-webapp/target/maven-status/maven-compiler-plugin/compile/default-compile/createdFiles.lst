@@ -1,0 +1,11 @@
+com\ucobank\finacle\service\MenuService.class
+com\ucobank\finacle\model\MenuItem.class
+com\ucobank\finacle\servlet\LoginServlet.class
+com\ucobank\finacle\filter\IECompatibilityFilter.class
+com\ucobank\finacle\service\AuthenticationService.class
+com\ucobank\finacle\servlet\FunctionServlet.class
+com\ucobank\finacle\servlet\MenuServlet.class
+com\ucobank\finacle\filter\AuthenticationFilter.class
+com\ucobank\finacle\servlet\SSOServlet.class
+com\ucobank\finacle\model\User.class
+com\ucobank\finacle\service\FunctionService.class
