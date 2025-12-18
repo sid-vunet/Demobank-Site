@@ -34,7 +34,8 @@ public class FunctionServlet extends HttpServlet {
         
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("authenticated") == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Not authenticated");
+            // Not authenticated - forward to login
+            request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
             return;
         }
         
@@ -42,26 +43,22 @@ public class FunctionServlet extends HttpServlet {
         String action = request.getParameter("action");
         
         if (functionId == null || functionId.trim().isEmpty()) {
-            functionId = "welcome";
+            functionId = (String) session.getAttribute("currentFunction");
+            if (functionId == null) functionId = "welcome";
         }
         
         // Get function data from service
         Object functionData = functionService.getFunctionData(functionId, action, request);
         
+        // Store current function in session (for internal state management)
+        session.setAttribute("currentView", "home");
+        session.setAttribute("currentFunction", functionId);
+        
         // Set function data as request attribute
-        request.setAttribute("functionId", functionId);
         request.setAttribute("functionData", functionData);
         request.setAttribute("functionTitle", functionService.getFunctionTitle(functionId));
         
-        // Determine if this is an AJAX request (for content only)
-        String ajax = request.getParameter("ajax");
-        
-        if ("true".equals(ajax)) {
-            // Return just the content area
-            request.getRequestDispatcher("/fininfra/ui/includes/content.jsp").forward(request, response);
-        } else {
-            // Return full page with updated content
-            request.getRequestDispatcher("/fininfra/ui/home.jsp").forward(request, response);
-        }
+        // Forward to SSOLogin.jsp (URL stays clean)
+        request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
     }
 }

@@ -39,24 +39,29 @@ public class SSOServlet extends HttpServlet {
 
         switch (callType) {
             case "GET_LOGIN_PAGE":
-                // Show login page
+                // Show login page - clear view state
+                session.setAttribute("currentView", "login");
                 request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
                 break;
                 
             case "GET_BANK_HOME_PAGE":
                 // Check if authenticated
                 if (isAuthenticated != null && isAuthenticated) {
-                    request.getRequestDispatcher("/fininfra/ui/home.jsp").forward(request, response);
+                    session.setAttribute("currentView", "home");
+                    session.setAttribute("currentFunction", "welcome");
                 } else {
+                    session.setAttribute("currentView", "login");
                     request.setAttribute("errorMessage", "Session expired. Please login again.");
-                    request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
                 }
+                request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
                 break;
                 
             case "LOGOUT":
-                // Invalidate session and redirect to login
+                // Invalidate session and forward to login (not redirect)
                 session.invalidate();
-                response.sendRedirect(request.getContextPath() + "/fininfra/ui/SSOLogin.jsp");
+                request = request;
+                request.setAttribute("successMessage", "You have been logged out successfully.");
+                request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
                 break;
                 
             case "GET_MENU":
@@ -64,7 +69,7 @@ public class SSOServlet extends HttpServlet {
                 if (isAuthenticated != null && isAuthenticated) {
                     request.getRequestDispatcher("/menu").forward(request, response);
                 } else {
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
                 }
                 break;
                 

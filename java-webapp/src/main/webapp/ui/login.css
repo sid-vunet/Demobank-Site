@@ -1,0 +1,139 @@
+/* UCO Bank Login Page Styles - IE Compatible */
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f0f0f0;
+}
+
+.login-header {
+	font-size: 18px;
+	font-weight: bold;
+	color: #980B19;
+	padding: 5px;
+	border-bottom: 2px solid #980B19;
+}
+
+.login-label {
+	font-size: 12px;
+	font-weight: bold;
+	color: #333;
+	padding: 5px;
+}
+
+.login-input {
+	width: 170px;
+	padding: 4px;
+	border: 1px solid #999;
+	font-size: 12px;
+}
+
+.login-button {
+	padding: 5px 15px;
+	margin: 0 5px;
+	background-color: #980B19;
+	color: white;
+	border: 1px solid #7a0914;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.login-button:hover {
+	background-color: #b50d1f;
+}
+
+.login-info {
+	font-size: 11px;
+	color: #666;
+	padding: 5px;
+	text-align: center;
+}
+
+/* Virtual Keyboard Styles */
+.width100percentforkeypad {
+	width: 100%;
+	background-color: #f9f9f9;
+	border: 2px solid #980B19;
+}
+
+.width100percentforkeypad1 {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/* Keyboard button styles */
+input[type="button"][name^="pp_"],
+input[type="button"][name^="alp_"],
+input[type="button"][name^="num_"],
+input[type="button"][name^="spl_"] {
+	width: 30px;
+	height: 30px;
+	margin: 2px;
+	padding: 2px;
+	background-color: #ffffff;
+	border: 1px solid #999;
+	cursor: pointer;
+	font-size: 11px;
+}
+
+input[type="button"][name^="pp_"]:hover,
+input[type="button"][name^="alp_"]:hover,
+input[type="button"][name^="num_"]:hover,
+input[type="button"][name^="spl_"]:hover {
+	background-color: #e0e0e0;
+}
+
+input[type="button"][name^="pp_"]:disabled,
+input[type="button"][name^="alp_"]:disabled,
+input[type="button"][name^="num_"]:disabled,
+input[type="button"][name^="spl_"]:disabled {
+	background-color: #cccccc;
+	cursor: not-allowed;
+}
+
+/* Pin pad specific buttons */
+input[name="pp_clear"],
+input[name="pp_erase"],
+input[name="pp_caps"],
+input[name="done"],
+input[name="cancel"],
+input[name="close"],
+input[name="help"] {
+	width: auto;
+	min-width: 50px;
+	padding: 5px 10px;
+	background-color: #980B19;
+	color: white;
+	border: 1px solid #7a0914;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/* Draggable pin pad div */
+#pp_div {
+	position: absolute;
+	z-index: 1000;
+	background-color: white;
+	border: 3px solid #980B19;
+	padding: 10px;
+	visibility: hidden;
+}
+
+#titleBar {
+	background-color: #980B19;
+	color: white;
+	padding: 5px;
+	cursor: move;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+/* Buffer input field */
+input[name="buffer"] {
+	width: 200px;
+	padding: 5px;
+	border: 1px solid #999;
+	margin: 5px 0;
+}

@@ -1,0 +1,48 @@
+# Build outputs
+*.war
+*.jar
+*.class
+target/
+build/
+
+# Compressed files
+*.gz
+*.tar.gz
+*.zip
+*.tar
+
+# Docker images
+uco-finacle.tar.gz
+uco-finacle-bundle.tar.gz
+
+# Tomcat
+tomcat/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Node modules (if any)
+node_modules/
+
+# Environment files
+.env
+.env.local

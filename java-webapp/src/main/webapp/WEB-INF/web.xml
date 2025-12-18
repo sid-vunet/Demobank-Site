@@ -65,10 +65,6 @@
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
-        <url-pattern>/fininfra/ui/home.jsp</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
         <url-pattern>/menu</url-pattern>
     </filter-mapping>
     <filter-mapping>
@@ -86,14 +82,14 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- Error Pages -->
+    <!-- Error Pages - Forward to SSOLogin.jsp (no URL params) -->
     <error-page>
         <error-code>404</error-code>
-        <location>/error/404.jsp</location>
+        <location>/fininfra/ui/SSOLogin.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/error/500.jsp</location>
+        <location>/fininfra/ui/SSOLogin.jsp</location>
     </error-page>
 
     <!-- Context Parameters -->

@@ -60,8 +60,12 @@ public class LoginServlet extends HttpServlet {
             // Set session timeout (30 minutes)
             session.setMaxInactiveInterval(30 * 60);
             
-            // Redirect to home page
-            response.sendRedirect(request.getContextPath() + "/fininfra/ui/home.jsp");
+            // Set current view in session (no URL params)
+            session.setAttribute("currentView", "home");
+            session.setAttribute("currentFunction", "welcome");
+            
+            // Forward to SSOLogin.jsp (URL stays clean)
+            request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
             
         } else {
             // Authentication failed
@@ -74,7 +78,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Redirect GET requests to login page
-        response.sendRedirect(request.getContextPath() + "/fininfra/ui/SSOLogin.jsp");
+        // Forward GET requests to login page (not redirect, keeps URL clean)
+        request.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
     }
 }

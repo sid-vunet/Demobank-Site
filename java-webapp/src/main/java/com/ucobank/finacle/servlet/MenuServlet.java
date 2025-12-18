@@ -38,17 +38,11 @@ public class MenuServlet extends HttpServlet {
         // Get menu items based on user role
         List<MenuItem> menuItems = menuService.getMenuItems(userRole);
         
-        if ("json".equals(format)) {
-            // Return JSON for AJAX requests
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            PrintWriter out = response.getWriter();
-            out.print(gson.toJson(menuItems));
-            out.flush();
-        } else {
-            // Set menu items as request attribute and forward to JSP
-            request.setAttribute("menuItems", menuItems);
-            request.getRequestDispatcher("/fininfra/ui/includes/leftmenu.jsp").forward(request, response);
-        }
+        // Return JSON for menu data requests
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        out.print(gson.toJson(menuItems));
+        out.flush();
     }
 }

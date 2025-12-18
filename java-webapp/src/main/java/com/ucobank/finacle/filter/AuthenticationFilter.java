@@ -41,9 +41,8 @@ public class AuthenticationFilter implements Filter {
             // User is authenticated, continue with request
             chain.doFilter(request, response);
         } else {
-            // User not authenticated, redirect to login
-            String loginPage = httpRequest.getContextPath() + "/fininfra/ui/SSOLogin.jsp";
-            httpResponse.sendRedirect(loginPage);
+            // User not authenticated, forward to login (keeps URL clean)
+            httpRequest.getRequestDispatcher("/fininfra/ui/SSOLogin.jsp").forward(request, response);
         }
     }
 

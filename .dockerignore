@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+
+# Build outputs
+java-webapp/target
+tomcat/
+
+# IDE files
+.idea
+*.iml
+.vscode
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Go files (not needed for Java app)
+*.go
+go.mod
+go.sum
+
+# Documentation (optional, can include if needed)
+*.md
+!README.md
+
+# Batch files
+*.bat
