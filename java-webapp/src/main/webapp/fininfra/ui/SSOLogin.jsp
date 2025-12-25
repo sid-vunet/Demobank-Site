@@ -508,6 +508,47 @@
             }
         };
     </script>
+    <script>
+        if (!window.__VUNET_RUM_LOADED__) {
+            window.__VUNET_RUM_LOADED__ = true;
+            (function (e, t, n, _, s, a) {
+                e[t] = e[t] || {
+                    readyListeners: [],
+                    onReady: function (n) {
+                        e[t].readyListeners.push(n);
+                    }
+                };
+                s = n.createElement("script");
+                s.async = 1;
+                s.src = "https://cdn.vunet.ai/rum/vunet-rum.js";
+                a = n.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(s, a);
+            })(window, "vunetRum", document);
+
+            window.vunetRum.onReady(function () {
+                window.vunetRum.initialize({
+                    collectionSourceUrl: "https://brum.vunetsystems.com/rum/v1/traces",
+                    serviceName: "vubank-frontend",
+                    applicationName: "IBMB",
+                    collectErrors: true,
+                    decideApiEndpoint: "sr:100,sp:100",
+                    dropShortTracesMs: 100,
+                    ignoreUrls: [/\/rum\/v1\/.*/i, /\/vusmartmaps\/.*/i]
+                }).then(() => {
+                    let t = "anonymous";
+                    try {
+                        t = window.sessionUser;
+                    } finally {
+                        window.vunetRum.mapUser(t, {
+                            isAuthenticated: window.isAuthenticated,
+                            currentView: window.currentView,
+                            currentFunction: window.currentFunction
+                        });
+                    }
+                });
+            });
+        }
+    </script>
 </head>
 <body>
 
